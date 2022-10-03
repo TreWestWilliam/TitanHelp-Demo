@@ -1,0 +1,50 @@
+﻿@page "/Newticket"
+@using Microsoft.Extensions.Logging
+@using TitanHelp_Demo.Models
+@inject ILogger<Models.Ticket> Logger
+
+<h2>newticket</h2>
+<EditForm Model="@ticket" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    
+    <p class="form-group">
+        <label class="form-input form-input-impressed">
+            Ticket Title:
+            <InputText @bind-Value="ticket.title" />
+        </label>
+    </p>
+    <p class="form-group">
+        <label class="form-input form-input-impressed">
+            Full Name:
+            <InputText @bind-Value="ticket.FullName" />
+        </label>
+    </p>
+    <p class="form-group">
+         <label class="form-input form-input-impressed">
+            Problem Description:
+            <InputTextArea @bind-Value="ticket.Description" />
+        </label>
+    </p>
+    <p class="form-group">
+            <label class="form-input form-input-impressed">
+            Ticket Date:
+            <InputDate @bind-Value="ticket.TDate" />
+        </label>
+    </p>
+
+        <button type="submit" class="button button-sm button-primary-filled">Create Ticket</button>
+    
+</EditForm>
+
+@code {
+    private Ticket ticket = new Ticket();
+
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
+
+        // Process the valid form
+    }
+}

@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.32901.82
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TitanHelp Demo", "TitanHelp Demo\TitanHelp Demo.csproj", "{2FA1982D-1529-4379-8445-220F182A3A15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitanHelp.Test", "TitanHelp.Test\TitanHelp.Test.csproj", "{757FCECD-6D2A-48F8-842F-18F0A5E0D2A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TitanHelp.Test", "TitanHelp.Test\TitanHelp.Test.csproj", "{757FCECD-6D2A-48F8-842F-18F0A5E0D2A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4DEF0E17-DA60-4E05-B319-CCCB0B0852C8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

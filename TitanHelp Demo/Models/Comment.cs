@@ -7,7 +7,10 @@ namespace TitanHelp_Demo.Models
 {
     public class Comment
     {
-        public int UID;
-        public string comment;
+        public int CommentId { get; set; }
+        public int UserID { get; set; }
+        public string Content { get; set; }
+        public DateTime CreationDT { get; set; }
+        public string TicketId { get; set; }
     }
 }

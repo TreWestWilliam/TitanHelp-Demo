@@ -7,7 +7,9 @@ namespace TitanHelp_Demo.Models
 {
     public class User
     {
-        public int UID;
-        public string screenName;
+        
+        public int UserID { get; set; }
+        public string ScreenName { get; set; }
+        public string Password { get; set; }
     }
 }

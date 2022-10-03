@@ -1,7 +1,44 @@
 ﻿@page "/Newticket"
+@using Microsoft.Extensions.Logging
+@using Models;
+@inject ILogger<Models.Ticket> Logger
 
-<h3>newticket</h3>
+
+<h2>newticket</h2>
+<EditForm Model="@ticket" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Ticket Title:
+            <InputText @bind-Value="ticket.Title" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Problem Description:
+            <InputTextArea @bind-Value="ticket.Content" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Ticket Date:
+            <InputDate @bind-Value="ticket.CreationDT" />
+        </label>
+    </p>
+
+    <button type="submit">Submit</button>
+
+</EditForm>
 
 @code {
+    Ticket ticket = new Ticket();
 
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
+
+        // Process the valid form
+    }
 }

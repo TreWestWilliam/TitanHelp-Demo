@@ -1,6 +1,7 @@
 ﻿@page "/Newticket"
 @using Microsoft.Extensions.Logging
 @using TitanHelp_Demo.Models
+@using Smart.Blazor
 @inject ILogger<Models.Ticket> Logger
 
 <h2>newticket</h2>
@@ -24,17 +25,30 @@
     <p class="form-group">
          <label class="form-input form-input-impressed">
             Problem Description:
-            <InputTextArea @bind-Value="ticket.Description" />
+            <InputTextArea @bind-Value="ticket.Content" />
         </label>
     </p>
     <p class="form-group">
             <label class="form-input form-input-impressed">
             Ticket Date:
-            <InputDate @bind-Value="ticket.TDate" />
-        </label>
+            <InputDate @bind-Value="ticket.CreationDT" />
+         </label>
     </p>
 
-        <button type="submit" class="button button-sm button-primary-filled">Create Ticket</button>
+
+    <div class="ticket-block">
+        <p class="text-gray-base text-medium">
+            
+                <code>Ticket Title</code>: @ticket.title<br />
+                <code>Full Name</code>: @ticket.FullName<br />
+            <code>Problem Description</code>: @ticket.Content<br />
+            <code>Date created</code>: @ticket.CreationDT
+            
+        </p>
+    </div>
+    <br />
+
+        <button type="submit" class="button button-sm button-primary-filled">Save Ticket</button>
     
 </EditForm>
 
@@ -45,6 +59,12 @@
     {
         Logger.LogInformation("HandleValidSubmit called");
 
-        // Process the valid form
+        // Call the method that adds ticket to database
+
     }
+    
 }
+
+
+
+

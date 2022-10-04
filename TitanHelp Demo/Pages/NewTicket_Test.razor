@@ -1,13 +1,18 @@
-﻿@page "/NTT"
+﻿<!-- Navigating to /NTT to visit the page -->
+@page "/NTT"
+<!-- Using our data related stuff -->
 @using Models;
 @using Data;
+<!-- Below is for the implementation of cookies -->
 @using BlazorCookieAuth.Controllers
 @using System.Net.Http
 @using System.Net.Http.Json;
 @inject HttpClient Http
 @inject NavigationManager UriHelper
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@inject TicketsContext _context;
+<!-- Injecting the Entity Framework Context / Database access-->
+@inject TicketsContext _context 
+<!-- Navigation Manager allows us to redirect the user after the submit button is hit -->
 @inject NavigationManager NavManager
 
 
@@ -16,45 +21,51 @@
 <EditForm Model="@testTicket" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
+    <p>Title</p>
     <InputText id="Title" @bind-Value="testTicket.Title" />
+    <br />
+    <p>Content</p>
     <InputText id="Content" @bind-Value="testTicket.Content" />
+    <p>Date</p>
+    <InputDate id="Date" @bind-Value="testTicket.CurrentDT"/>
 
-    <button type="submit">Submit</button>
+    <button type="submit">Post</button>
 </EditForm>
 
 @code {
     UserModel CurrentUser = new UserModel();
-    private TicketVM testTicket = new TicketVM();
-    private void HandleValidSubmit()
+    private TicketVM testTicket = new TicketVM(); // Ticket VM is a class that is used to interface with the actual Ticket class, this way we can vailidate the form without implementing every field
+    // It prevents exploits and stuff
+    private void HandleValidSubmit() // This is called when we click submit, defined at the "OnValidSubmit" on line 21
     {
-        testTicket.TicketPriority = Priority.normal;
+        testTicket.TicketPriority = Priority.normal; // Ticket priority isnt implemented, we're basically not worrying about it.
 
-        Ticket ticket = new Ticket
+        Ticket ticket = new Ticket // We create a new ticket since we're using Ticket VM
         {
-            Title = testTicket.Title,
+            Title = testTicket.Title, // We're basically just throwing the valid input from test ticket into here
             Content = testTicket.Content,
             TicketPriority = testTicket.TicketPriority,
-            CreationDT = DateTime.Now,
-            CreatorId = ScreenNameToUID(CurrentUser.UserName),
-            IsOpen = true
+            CreationDT = testTicket.CurrentDT,
+            CreatorId = ScreenNameToUID(CurrentUser.UserName), // We get the cookie of the username since we doont store user id, and then look up the uid
+            IsOpen = true // Opening isnt implemented, dont worry about it.
 
 
         };
 
-        _context.Tickets.Add(ticket);
-        _context.SaveChanges();
+        _context.Tickets.Add(ticket); // Here we're telling Entity Framework we want to upload the ticket to the database
+        _context.SaveChanges(); // Telling entity framework to save all changes to the database.
 
-        NavManager.NavigateTo("/");
+        NavManager.NavigateTo("/"); // This is a redirect to the home page.
     }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync() //This is called when the page is opened
     {
-        await GetUserFromCookie();
-        await base.OnInitializedAsync();
+        testTicket.CurrentDT = DateTime.Now; // We set the ticket's date time to the current date time just to be sure
+        await GetUserFromCookie(); // We get the users cookie data here
+        await base.OnInitializedAsync(); // Telling it to do all the other stuff it has to do
     }
 
-    private int ScreenNameToUID(string name)
+    private int ScreenNameToUID(string name) // This is a function that just searches for the user's id
     {
         foreach (User u in _context.Users)
         {
@@ -64,7 +75,7 @@
         return 0;
     }
 
-    async Task GetUserFromCookie()
+    async Task GetUserFromCookie() // This code gets the User's info from the cookie for us.
     {
         var authToken =
         HttpContextAccessor.HttpContext.Request.Cookies[".AspNetCore.Cookies"];

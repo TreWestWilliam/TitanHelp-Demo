@@ -11,6 +11,6 @@ namespace TitanHelp_Demo.Models
         public int UserID { get; set; }
         public string Content { get; set; }
         public DateTime CreationDT { get; set; }
-        public string TicketId { get; set; }
+        public int TicketId { get; set; }
     }
 }

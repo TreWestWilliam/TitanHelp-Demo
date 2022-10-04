@@ -1,0 +1,40 @@
+﻿@page "/ATT"
+@using Models;
+@using Data;
+
+@inject TicketsContext _context;
+<h3>AllTickets_Test</h3>
+
+
+@foreach (Models.Ticket t in _context.Tickets)
+{
+    <div>
+        <h1>@t.Title</h1>
+        <h2>@t.CreationDT</h2>
+        <h2>By: @CreatorIDToUsername(t.CreatorId)</h2>
+    </div>
+
+}
+
+@code {
+
+    protected override Task OnInitializedAsync()
+    {
+
+        return base.OnInitializedAsync();
+    }
+
+    public IList<Models.Ticket> Ticket { get; set; }
+
+    public string CreatorIDToUsername(int id)
+    {
+        foreach (User u in _context.Users)
+        {
+            if (u.UserID == id)
+                return u.ScreenName;
+        }
+        return null;
+    }
+
+
+}

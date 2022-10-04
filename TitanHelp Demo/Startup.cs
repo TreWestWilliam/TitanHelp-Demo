@@ -48,8 +48,8 @@ namespace TitanHelp_Demo
             services.AddHttpClient();
             services.AddScoped<HttpClient>();
 
-            services.AddDbContext<TitanHelp_DemoContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("TitanHelp_DemoContext")));
+            services.AddDbContext<TicketsContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("TicketsContext")));
 
         }
 

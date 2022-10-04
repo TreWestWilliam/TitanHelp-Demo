@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace TitanHelp_Demo.Models
 {
-
-    public enum Priority 
-    { 
-        low, normal, high, highest
-    }
-    public class Ticket
+    public class TicketVM // Ticket Virtual Model, what the client submits to the server
     {
-        public int Id { get; set; }// ID's are managed by the database/EF we don't set them
         [Required]
         [StringLength(50)]
         [Display(Name = "Title")]
@@ -24,11 +18,8 @@ namespace TitanHelp_Demo.Models
         [Display(Name = "Ticket Content")]
         public string Content { get; set; } // The Ticket's Content (Big block of text)
         [Required]
-        public DateTime CreationDT { get; set; } // The date time the ticket was created
-        [Required]
         public int CreatorId { get; set; } // The Creator's ID
         [Required]
         public bool IsOpen { get; set; } //Whether the ticket is open or not
-        public ICollection<Comment> Comments { get; set; } // Comments related to the ticket, probably wont use.
     }
 }

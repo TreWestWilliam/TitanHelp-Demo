@@ -31,12 +31,12 @@ namespace TitanHelp_Demo.Data
             context.SaveChanges();
 
             var Tickets = new Ticket[] 
-            { 
+            { /*
                 new Ticket{Title="Ticket 1", TicketPriority = Priority.normal, Content = "This is a ticket.", CreationDT = DateTime.Now, CreatorId = 0, IsOpen = true},
                 new Ticket{Title="Ticket 2", TicketPriority = Priority.high, Content = "This is another ticket.", CreationDT = DateTime.Today, CreatorId = 1, IsOpen = true},
                 new Ticket{Title="Third Ticket", TicketPriority = Priority.low, Content = "This is yet another ticket.  This one is made in the future.", CreationDT = DateTime.Today.AddDays(1), CreatorId = 2, IsOpen = true},
                 new Ticket{Title="Fourth Ticket", TicketPriority = Priority.high, Content = "This is a closed ticket.", CreationDT = DateTime.Now.AddDays(-1), CreatorId = 1, IsOpen = false}
-            };
+            */};
 
             context.Tickets.AddRange(Tickets);
             context.SaveChanges();

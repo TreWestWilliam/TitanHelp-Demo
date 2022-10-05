@@ -1,23 +1,19 @@
-﻿@page "/Alltickets"
+﻿@page "/ATT"
 @using Models;
 @using Data;
 <!-- Injecting the Entity Framework Context-->
 @inject TicketsContext _context;
-<h3>All Tickets</h3>
+<h3>AllTickets Test</h3>
 
 
 @foreach (Ticket_Readable t in tickets)
 {// Here we're looping through all the tickets in the context on page generation to show all the tickets
-    <div class="tickets">
-        <h4>@t.Title</h4>  <!-- The ticket's Title-->
-        <h5 class="tickets-info">By:@t.CreatorName On: @t.CreationDT.ToString("ddd, MMM dd, yyy 'At:'HH:mm")</h5> <!-- Date Time-->
-        <p class="tickets-content">@t.Content</p> <!-- And the Content -->
-    </div>
+<div class="tickets">
+    <h4>@t.Title</h4>  <!-- The ticket's Title-->
+    <h5 class="tickets-info">By: @t.CreatorName On: @t.CreationDT.ToString( "ddd, MMM dd, yyy 'At:'HH:mm" )</h5> <!-- Date Time-->
+    <p class="tickets-content">@t.Content</p> <!-- And the Content -->
+</div>
 
-}
-@if (tickets.Count() <= 0) 
-{ 
-    <h1>No tickets found in the database.</h1>
 }
 
 @code {

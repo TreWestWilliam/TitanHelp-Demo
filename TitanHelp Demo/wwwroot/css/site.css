@@ -181,3 +181,40 @@ app {
         display: block;
     }
 }
+
+.tickets {
+    /*border-style: solid;*/
+    border-radius: 1%;
+    border-color: grey;
+    margin-bottom: 1%;
+    background-color:lightgray;
+}
+    .tickets h4 {
+        background-color:rgb(29 45 74);
+        color:white;
+        padding:.5%;
+    }
+.tickets-info {
+    padding-bottom: .5%;
+    border-bottom: black;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    padding-left: .5%;
+}
+.tickets-content {
+    padding-left:1%;
+    padding-bottom:1%;
+}
+
+.newTicketP {
+    margin-top:0;
+    margin-bottom:0;
+}
+
+.newTicketInput {
+    margin-bottom:1%;
+}
+.newTicketSubmit {
+    background: #1b6ec2;
+    color: white;
+}

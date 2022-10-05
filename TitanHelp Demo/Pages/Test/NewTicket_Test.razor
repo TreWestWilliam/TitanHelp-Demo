@@ -1,4 +1,5 @@
-﻿@page "/Newticket"
+﻿<!-- Navigating to /NTT to visit the page -->
+@page "/NTT"
 <!-- Using our data related stuff -->
 @using Models;
 @using Data;
@@ -15,20 +16,20 @@
 @inject NavigationManager NavManager
 
 
-<h3>New Ticket</h3>
+<h3>NewTicket_Test</h3>
 
 <EditForm Model="@testTicket" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-    <p class="newTicketP">Title</p>
-    <InputText class="newTicketInput" id="Title" @bind-Value="testTicket.Title" />
+    <p>Title</p>
+    <InputText id="Title" @bind-Value="testTicket.Title" />
     <br />
-    <p class="newTicketP">Content</p>
-    <InputText class="newTicketInput" id="Content" @bind-Value="testTicket.Content" />
-    <p class="newTicketP">Date</p>
-    <InputDate class="newTicketInput" id="Date" @bind-Value="testTicket.CurrentDT"/>
-    <br />
-    <button class="newTicketSubmit" type="submit">Post</button>
+    <p>Content</p>
+    <InputText id="Content" @bind-Value="testTicket.Content" />
+    <p>Date</p>
+    <InputDate id="Date" @bind-Value="testTicket.CurrentDT"/>
+
+    <button type="submit">Post</button>
 </EditForm>
 
 @code {
@@ -40,7 +41,7 @@
         testTicket.TicketPriority = Priority.normal; // Ticket priority isnt implemented, we're basically not worrying about it.
         DataInterface.CreateTicket(_context, testTicket, ScreenNameToUID(CurrentUser.UserName));
 
-        NavManager.NavigateTo("/alltickets"); // This is a redirect to the home page.
+        NavManager.NavigateTo("/"); // This is a redirect to the home page.
     }
 
     protected override async Task OnInitializedAsync() //This is called when the page is opened

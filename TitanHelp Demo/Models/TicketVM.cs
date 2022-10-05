@@ -17,9 +17,6 @@ namespace TitanHelp_Demo.Models
         [StringLength(1000, ErrorMessage = "A Ticket's Content cannot be longer than 1,000 characters.")]
         [Display(Name = "Ticket Content")]
         public string Content { get; set; } // The Ticket's Content (Big block of text)
-        [Required]
-        public int CreatorId { get; set; } // The Creator's ID
-        [Required]
-        public bool IsOpen { get; set; } //Whether the ticket is open or not
+        public DateTime CurrentDT { get; set; }
     }
 }
